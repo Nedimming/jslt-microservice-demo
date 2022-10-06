@@ -1,6 +1,5 @@
 package com.nedwrites.frdemo;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.schibsted.spt.data.jslt.Expression;
 import com.schibsted.spt.data.jslt.Parser;
 
