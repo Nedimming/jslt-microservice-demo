@@ -2,6 +2,7 @@ package com.nedwrites.frdemo;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.schibsted.spt.data.jslt.Expression;
 
@@ -26,15 +27,27 @@ public class JSLTRequest {
 
     public JsonNode getOutput() {
         ObjectMapper objectMapper = new ObjectMapper();
-
-        ObjectNode output = objectMapper.createObjectNode();
+        if(input.isArray()){
+            ArrayNode output = objectMapper.createArrayNode();
+            for (JsonNode node : input) {
+                ObjectNode objectNode = objectMapper.createObjectNode();
+                output.add(this.processNode(node, objectNode));
+            }
+            return output;
+        }else {
+            ObjectNode output = objectMapper.createObjectNode();
+            this.processNode(input, output);
+            return output;
+        }
+    }
+    public JsonNode processNode(JsonNode node, ObjectNode objectNode){
         List<Transform> transforms = config.getTransforms();
-        for (Transform transform : transforms){
-            if(transform.getEnabled()) {
+        for (Transform transform : transforms) {
+            if (transform.getEnabled()) {
                 Expression jslt = transform.getJsltExpression();
-                output.set(transform.getName(), jslt.apply(input));
+                objectNode.set(transform.getName(), jslt.apply(node));
             }
         }
-        return output;
+        return objectNode;
     }
 }
