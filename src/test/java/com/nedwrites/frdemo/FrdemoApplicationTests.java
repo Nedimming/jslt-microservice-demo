@@ -7,7 +7,6 @@ import org.assertj.core.internal.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpRequest;
 import org.springframework.util.Assert;
 
 import java.util.ArrayList;
@@ -42,7 +41,7 @@ class FrdemoApplicationTests {
 		JSLTRequest jsltRequest = new JSLTRequest(config, mockInput);
 		JsonNode output = jsltRequest.getOutput();
 
-		//Asser that the output is the same as the input.
+		//Assert that the output is the same as the input.
 		Assert.isTrue(output.get("test").equals(mockInput), "JSLTRequest.getOutput() failed to return correct value.");
 	}
 }
