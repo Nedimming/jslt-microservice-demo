@@ -3,6 +3,9 @@ package com.nedwrites.frdemo;
 import com.schibsted.spt.data.jslt.Expression;
 import com.schibsted.spt.data.jslt.Parser;
 
+/*
+Transform objects are applied to each input node and the result stored in a corresponding output node.
+ */
 public class Transform {
     private final String name;
     private final boolean useInML;

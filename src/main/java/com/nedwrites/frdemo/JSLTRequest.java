@@ -27,6 +27,7 @@ public class JSLTRequest {
 
     public JsonNode getOutput() {
         ObjectMapper objectMapper = new ObjectMapper();
+        //Allow for arrays of similar input objects.
         if(input.isArray()){
             ArrayNode output = objectMapper.createArrayNode();
             for (JsonNode node : input) {
@@ -35,6 +36,7 @@ public class JSLTRequest {
             }
             return output;
         }else {
+            //Process the entire input object as a single input.
             ObjectNode output = objectMapper.createObjectNode();
             this.processNode(input, output);
             return output;
