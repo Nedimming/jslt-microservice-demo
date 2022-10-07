@@ -1,4 +1,6 @@
 # jslt-microservice-demo
+---
+> This is a very simple example of a microservice. Most notably it has no security mechanisms to provide authentication and authorizations.
 
 ## Example Input
 ```json
