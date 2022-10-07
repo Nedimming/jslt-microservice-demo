@@ -1,6 +1,6 @@
 # jslt-microservice-demo
 ---
-> This is a very simple example of a microservice. Most notably it has no security mechanisms to provide authentication and authorizations.
+This is a small example implementation of [JSLT](https://github.com/schibsted/jslt) as a microservice. It allows for declaritive configuration objects to be sent with input data allowing. The API has a single endpoint *{URL}/transform*.
 
 ## Example Input
 ```json
