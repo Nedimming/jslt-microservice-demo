@@ -32,17 +32,17 @@ public class JSLTRequest {
             ArrayNode output = objectMapper.createArrayNode();
             for (JsonNode node : input) {
                 ObjectNode objectNode = objectMapper.createObjectNode();
-                output.add(this.processNode(node, objectNode));
+                output.add(this._processNode(node, objectNode));
             }
             return output;
         }else {
             //Process the entire input object as a single input.
             ObjectNode output = objectMapper.createObjectNode();
-            this.processNode(input, output);
+            this._processNode(input, output);
             return output;
         }
     }
-    public JsonNode processNode(JsonNode node, ObjectNode objectNode){
+    private JsonNode _processNode(JsonNode node, ObjectNode objectNode){
         List<Transform> transforms = config.getTransforms();
         for (Transform transform : transforms) {
             if (transform.getEnabled()) {
